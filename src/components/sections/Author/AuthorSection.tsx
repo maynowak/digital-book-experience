@@ -1,6 +1,5 @@
 import Container from "../../layout/Container/Container";
 import SectionHeading from "../../ui/SectionHeading/SectionHeading";
-import Image from "../../ui/Image/Image";
 import Button from "../../ui/Button/Button";
 import styles from "./AuthorSection.module.css";
-export default function AuthorSection(){return(<section id="author" className={styles.section}><Container><div className={styles.grid}><Image alt="Autorin (Bild nicht verfügbar)" className={styles.image}/><div><SectionHeading overline="Autorin" title="Maymilly Nowak" description="Poetische Gedanken und moderne Webentwicklung."/><Button>Kontakt aufnehmen</Button></div></div></Container></section>);} 
+export default function AuthorSection(){return(<section id="author" className={styles.section}><Container><div className={styles.grid}>{/* TODO: Replace placeholder with the real author profile image when available. */}<figure aria-label="Author image placeholder" className={styles.image}><figcaption className={styles.visuallyHidden}>Author image will be integrated</figcaption><div role="img" aria-hidden="true">Author image will be integrated</div></figure><div><SectionHeading overline="Autorin" title="Maymilly Nowak" description="Poetische Gedanken und moderne Webentwicklung."/><Button>Kontakt aufnehmen</Button></div></div></Container></section>);}  

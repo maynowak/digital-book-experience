@@ -1,6 +1,5 @@
 import Container from "../../layout/Container/Container";
 import SectionHeading from "../../ui/SectionHeading/SectionHeading";
-import Image from "../../ui/Image/Image";
 import Button from "../../ui/Button/Button";
 import styles from "./BookSection.module.css";
 export default function BookSection() {
@@ -10,11 +9,11 @@ export default function BookSection() {
         <div className={styles.grid}>
           <div className={styles.coverFrame}>
               <div className={styles.coverSurface}>
-              {/* Asset pending: use semantic image element without placeholder artwork. Add real cover to `src/assets/book/` when available. */}
-              <Image
-                alt="Buchcover (noch nicht verfügbar)"
-                className={styles.cover}
-              />
+              {/* TODO: Replace placeholder with the real published book cover when available. */}
+              <figure aria-label="Book cover placeholder" className={styles.cover}>
+                <figcaption className={styles.visuallyHidden}>Book cover will be integrated</figcaption>
+                <div role="img" aria-hidden="true">Book cover will be integrated</div>
+              </figure>
             </div>
           </div>
           <div className={styles.details}>
