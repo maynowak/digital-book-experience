@@ -30,13 +30,14 @@ This document defines the project phases and the sprint backlog aligned with the
 
 ## Sprint 1.2 Storytelling
 
-🚧 In Progress
+✅ Completed
 
 ---
 
+
 ## Sprint 1.3 Animation
 
-⬜ Planned
+🚧 Ready to Start
 
 ---
 
