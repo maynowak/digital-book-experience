@@ -1,0 +1,16 @@
+:root{
+	--color-primary:#3d6c8b;
+	--color-accent:#ff6b6b;
+	--bg: #0f1720;
+	--surface: #0b1220;
+	--muted-bg: #0f1a24;
+	--text: #e6eef6;
+	--text-muted: #9fb0c2;
+	--container-width:1200px;
+	--container-padding:1.5rem;
+	--radius: 12px;
+	--shadow: 0 10px 30px rgba(2,6,23,0.6);
+	--border: rgba(255,255,255,0.06);
+	--accent-border: rgba(255,107,107,0.15);
+	--accent-bg: linear-gradient(90deg, rgba(255,107,107,0.06), rgba(61,108,139,0.04));
+}
