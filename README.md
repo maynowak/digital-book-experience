@@ -1,3 +1,15 @@
+Digital Book Experience
+
+A React + TypeScript project
+inspired by
+
+"Die Kleine und das Universum"
+
+Status
+
+Build 1.0 Stable
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
