@@ -1,1 +1,2 @@
-.hero{min-height:100vh;display:flex;align-items:center;background:#243447;color:#fff}.content{max-width:720px;padding:4rem 0}
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--section-hero-bg);color:var(--color-warm-white)}
+.content{max-width:720px;padding:var(--space-8) 0}

@@ -1,1 +1,2 @@
-.section{background:#f6f8fb}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.section{background:var(--surface-light-2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-5)}

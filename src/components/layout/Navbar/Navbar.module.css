@@ -1,4 +1,4 @@
-.header{position:sticky;top:0;background:rgba(11,18,32,0.6);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);}
-.nav{display:flex;gap:1.5rem;align-items:center;min-height:64px}
-a{text-decoration:none;color:var(--text);transition:color .18s}
+.header{position:sticky;top:0;background:var(--nav-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);}
+.nav{display:flex;gap:var(--space-5);align-items:center;min-height:64px}
+a{text-decoration:none;color:var(--text);transition:color var(--transition-fast)}
 a:hover{color:var(--color-accent)}

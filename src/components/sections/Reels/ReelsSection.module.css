@@ -1,1 +1,1 @@
-.section{padding:6rem 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}.body{padding:1rem}
+.section{padding:var(--space-9) 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-5)}.body{padding:var(--space-3)}

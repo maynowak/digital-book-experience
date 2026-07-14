@@ -1,1 +1,9 @@
-.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}.hover:hover{transform:translateY(-6px)}
+.card{
+	background: var(--surface-0);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	box-shadow: var(--shadow-subtle);
+	transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+.hover:hover{transform:translateY(-6px)}
+.card:focus-visible{box-shadow:var(--focus-ring)}
