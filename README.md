@@ -1,89 +1,87 @@
-Digital Book Experience
+# 🌌 Digital Book Experience
 
-A React + TypeScript project
-inspired by
+A React + TypeScript marketing website inspired by the published book
 
-"Die Kleine und das Universum"
+**"Die Kleine und das Universum"**
 
-Status
+---
 
-Build 1.0 Stable
+## 🤖 AI Assisted Development
 
+All AI tools (Codex, ChatGPT, etc.) should read:
 
-# React + TypeScript + Vite
+- docs/AI_CONTEXT.md
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+before making changes.
+---
 
-Currently, two official plugins are available:
+## Vision
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Digital Book Experience is not a traditional landing page.
 
-## React Compiler
+It is a calm, poetic and immersive web experience designed to introduce visitors to the philosophy of the book through images, quotations and short videos.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## Technology
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- CSS Modules
+- React Compiler
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Documentation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Project documentation can be found in:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+docs/
 
+- AI_CONTEXT.md
+- DESIGN_SYSTEM.md
+- ARCHITECTURE.md
+- COMPONENT_GUIDE.md
+- STORYBOARD.md
+- ROADMAP.md
+
+---
+
+## AI Assisted Development
+
+Before modifying the project, every AI assistant should read:
+
+- docs/AI_CONTEXT.md
+- docs/DESIGN_SYSTEM.md
+- docs/ARCHITECTURE.md
+
+These documents are the single source of truth.
+
+---
+
+## Build
+
+```bash
+npm install
+npm run dev
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Current Status
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+✅ Foundation
 
-```
+✅ Design System
+
+✅ Hero Experience
+
+🚧 Content Integration
+
+---
+
+## License
+
+MIT
