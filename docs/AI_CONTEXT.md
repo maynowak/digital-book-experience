@@ -21,6 +21,12 @@ Goals
 - premium
 - minimalistic
 
+Progress
+
+- Sprint 1.3 completed: motion, storytelling polish, navigation refinement, Firefox compatibility, and visual polish.
+- Current maturity: buildable, polished, premium reading experience with accessible motion and design tokens.
+- Next phase: Sprint 2.0 — Media Integration.
+
 Visual Style
 
 - nature

@@ -27,3 +27,11 @@ Gedanken
 ↓
 
 Das Buch
+
+↓
+
+Autor
+
+↓
+
+Kontakt

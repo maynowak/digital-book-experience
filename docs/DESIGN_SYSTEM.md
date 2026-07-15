@@ -175,6 +175,16 @@ Alle Komponenten folgen denselben Regeln.
 - leicht verschwommen
 - unaufdringlich
 
+## Visual refinements
+
+- Navigation glass effect tuned for a lighter, more elegant surface.
+- Hero overlay reduced for more image visibility while preserving cinematic depth.
+- Typography rhythm refined with slightly larger heading and paragraph spacing.
+- Section spacing increased where it improves readability and calm progression.
+- Button polish includes softer hover transitions and subtle shadow depth.
+- Navigation spacing uses design tokens for consistent, generous link spacing.
+- Design token usage is reinforced across spacing, color, shadows, and motion.
+
 ---
 
 # Responsive Design

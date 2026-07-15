@@ -8,10 +8,10 @@
   justify-content: center;
   gap: calc(var(--space-2));
   transition:
-    transform var(--transition-slow),
-    box-shadow var(--transition-slow),
-    background-color var(--transition-slow);
-  will-change: transform;
+    transform var(--transition-medium),
+    box-shadow var(--transition-medium),
+    background-color var(--transition-medium);
+  will-change: transform, box-shadow;
 }
 .primary {
   background: var(--color-primary);
@@ -37,7 +37,8 @@
 }
 
 .button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
 }
 .button:active {
   transform: translateY(-1px);

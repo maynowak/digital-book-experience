@@ -75,9 +75,9 @@
   --section-hero-bg: #243447;
 
   /* Navigation */
-  --nav-bg: rgba(11, 18, 32, 0.6);
+  --nav-bg: rgba(22, 34, 54, 0.72);
   --nav-height: 64px;
-  --hero-overlay: rgba(255, 255, 255, 0.08);
+  --hero-overlay: rgba(10, 16, 31, 0.55);
   --hero-glow: rgba(255, 255, 255, 0.14);
   --z-nav: 40;
 

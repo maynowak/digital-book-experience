@@ -14,16 +14,22 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(10, 16, 31, 0.72) 0%, rgba(10, 16, 31, 0.72) 100%);
+  background: linear-gradient(180deg, rgba(10, 16, 31, 0.52) 0%, rgba(10, 16, 31, 0.72) 100%);
 }
 
 .content {
   position: relative;
   max-width: 760px;
   padding: calc(var(--space-8) + 1rem) 0;
+  padding-top: calc(var(--space-8) + var(--nav-height));
   display: grid;
   gap: var(--space-6);
-   padding-top: calc(var(--space-8) + var(--nav-height));
+}
+
+/* Subtle entrance animation: slow fade-in with slight upward movement */
+@keyframes dbx-fade-up {
+  from {
+    opacity: 0;
     transform: translateY(14px);
   }
   to {
