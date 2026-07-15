@@ -2,9 +2,11 @@ import Container from "../../layout/Container/Container";
 import SectionHeading from "../../ui/SectionHeading/SectionHeading";
 import Button from "../../ui/Button/Button";
 import styles from "./BookSection.module.css";
+import useReveal from "../../../hooks/useReveal";
 export default function BookSection() {
+  const ref = useReveal<HTMLElement>();
   return (
-    <section id="book" className={styles.section}>
+    <section id="book" className={`${styles.section} dbx-reveal`} ref={ref as any}>
       <Container>
         <div className={styles.grid}>
           <div className={styles.coverFrame}>
