@@ -24,11 +24,11 @@ Release summary for the current development state (pre-push).
 - **Asset changes:** Added built hero asset in `src/assets/hero/hero.png`; removed generated placeholder SVGs from `src/assets/book/`, `src/assets/author/`, and `src/assets/reels/` to comply with the rule: no placeholder artwork in production. Sections referencing missing assets now render semantic image elements and include accessible alt text until real assets are provided.
 - **Build status:** `npm run build` completed successfully on 2026-07-14 (production build artifacts generated under `dist/`).
 - **Remaining TODOs:**
-	- Complete Sprint 1.2 (Storytelling): refine content, section copy, and transitions.
-	- Add real assets for Book, Author, and Reels into `src/assets/` and update components to import them.
-	- Expand `docs/ARCHITECTURE.md` with deployment and module contracts before large refactors.
-	- Run a full accessibility audit and address any issues beyond quick checks (alt text, focus states, keyboard navigation).
-	- Decide whether to push these commits to the remote repository.
+  - Complete Sprint 1.2 (Storytelling): refine content, section copy, and transitions.
+  - Add real assets for Book, Author, and Reels into `src/assets/` and update components to import them.
+  - Expand `docs/ARCHITECTURE.md` with deployment and module contracts before large refactors.
+  - Run a full accessibility audit and address any issues beyond quick checks (alt text, focus states, keyboard navigation).
+  - Decide whether to push these commits to the remote repository.
 
 ---
 

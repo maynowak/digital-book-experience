@@ -1,9 +1,15 @@
-.card{
-	background: var(--surface-0);
-	border-radius: var(--radius-md);
-	overflow: hidden;
-	box-shadow: var(--shadow-subtle);
-	transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+.card {
+  background: var(--surface-0);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  transition:
+    transform var(--transition-slow),
+    box-shadow var(--transition-slow);
 }
-.hover:hover{transform:translateY(-6px)}
-.card:focus-visible{box-shadow:var(--focus-ring)}
+.hover:hover {
+  transform: translateY(-6px);
+}
+.card:focus-visible {
+  box-shadow: var(--focus-ring);
+}

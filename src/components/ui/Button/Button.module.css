@@ -1,30 +1,52 @@
-.button{
-	border: none;
-	border-radius: var(--radius-lg);
-	cursor: pointer;
-	font-weight: 600;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: calc(var(--space-2));
-	transition: transform var(--transition-slow), box-shadow var(--transition-slow), background-color var(--transition-slow);
-	will-change: transform;
+.button {
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--space-2));
+  transition:
+    transform var(--transition-slow),
+    box-shadow var(--transition-slow),
+    background-color var(--transition-slow);
+  will-change: transform;
 }
-.primary{
-	background: var(--color-primary);
-	color: var(--color-warm-white);
-	box-shadow: var(--shadow-soft);
+.primary {
+  background: var(--color-primary);
+  color: var(--color-warm-white);
+  box-shadow: var(--shadow-soft);
 }
-.outline{
-	background: transparent;
-	border: 2px solid var(--color-primary);
-	color: var(--color-primary);
+.outline {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
-.small{padding:calc(var(--space-2) - 0.1rem) calc(var(--space-3) + 0.3rem);font-size:var(--fs-sm)}
-.medium{padding:calc(var(--space-3)) calc(var(--space-5));font-size:var(--fs-md)}
-.large{padding:calc(var(--space-4)) calc(var(--space-6));font-size:var(--fs-lg)}
+.small {
+  padding: calc(var(--space-2) - 0.1rem) calc(var(--space-3) + 0.3rem);
+  font-size: var(--fs-sm);
+}
+.medium {
+  padding: calc(var(--space-3)) calc(var(--space-5));
+  font-size: var(--fs-md);
+}
+.large {
+  padding: calc(var(--space-4)) calc(var(--space-6));
+  font-size: var(--fs-lg);
+}
 
-.button:hover{transform:translateY(-3px)}
-.button:active{transform:translateY(-1px)}
-.button:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-.button:focus-visible{box-shadow:var(--focus-ring)}
+.button:hover {
+  transform: translateY(-3px);
+}
+.button:active {
+  transform: translateY(-1px);
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.button:focus-visible {
+  box-shadow: var(--focus-ring);
+}

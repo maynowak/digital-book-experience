@@ -141,21 +141,30 @@
   border-top: 1px solid var(--border);
 }
 @media (max-width: 1024px) {
-  #spacer { height: 48px; }
+  #spacer {
+    height: 48px;
+  }
 }
 
 .ticks {
   position: relative;
   width: 100%;
 }
-.ticks::before, .ticks::after {
+.ticks::before,
+.ticks::after {
   content: '';
   position: absolute;
   top: -4.5px;
   border: 5px solid transparent;
 }
-.ticks::before { left: 0; border-left-color: var(--border); }
-.ticks::after { right: 0; border-right-color: var(--border); }
+.ticks::before {
+  left: 0;
+  border-left-color: var(--border);
+}
+.ticks::after {
+  right: 0;
+  border-right-color: var(--border);
+}
 
 /* Landing page styles */
 .landing .hero {
@@ -182,7 +191,10 @@
   margin-bottom: var(--space-5);
 }
 
-.actions { display: inline-flex; gap: var(--space-3); }
+.actions {
+  display: inline-flex;
+  gap: var(--space-3);
+}
 
 .btn {
   display: inline-block;
@@ -235,11 +247,13 @@
   gap: var(--space-3);
 }
 
-.buy-form input[type="email"] {
+.buy-form input[type='email'] {
   padding: var(--space-3) var(--space-2);
   border-radius: var(--radius-input);
   border: 1px solid var(--border);
   flex: 1 1 auto;
 }
 
-.buy-form .btn { flex: 0 0 auto; }
+.buy-form .btn {
+  flex: 0 0 auto;
+}

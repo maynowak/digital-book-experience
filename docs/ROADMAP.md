@@ -34,7 +34,6 @@ This document defines the project phases and the sprint backlog aligned with the
 
 ---
 
-
 ## Sprint 1.3 Animation
 
 🚧 Ready to Start
@@ -97,6 +96,95 @@ This document defines the project phases and the sprint backlog aligned with the
   - No animation distracts from reading or interaction.
   - Accessibility remains intact.
 - **Estimated Effort:** Small to Medium
+
+### Sprint 1.3 Planning
+
+#### Sprint Goal
+
+- Add a calm, elegant animation layer that supports the story without calling attention to the interface.
+
+#### User Experience Goal
+
+- Strengthen the poetic site flow through slow, natural motion while preserving quiet reading and restful pacing.
+
+#### Epics
+
+1. **Section transitions** — gentle entry/exit motion for major page sections.
+2. **Surface refinement** — subtle hover and focus feedback for cards, buttons, and links.
+3. **Visual depth** — restrained parallax-like movement for background and layered elements.
+4. **Motion accessibility** — ensure all animation respects `prefers-reduced-motion`.
+
+#### Task-by-task tickets
+
+- **T1:** Audit current section components to identify natural motion entry points.
+- **T2:** Define animation duration and easing standards that feel slow and calm.
+- **T3:** Implement subtle fade-in and slide-in motion for `HeroSection`, `BookSection`, `AuthorSection`, `ReelsSection`, and `ContactSection`.
+- **T4:** Add soft hover/focus states for `Button`, `Card`, and interactive links using micro-motion only.
+- **T5:** Implement a gentle background or element shift in `HeroSection` to add visual depth without motion sickness.
+- **T6:** Add a subtle, optional parallax-like movement to layered imagery or text blocks in `HeroSection` and `QuotesSection`.
+- **T7:** Add `prefers-reduced-motion` handling across all motion styles and test with system settings.
+- **T8:** Validate animation performance on desktop and mobile, ensuring no jank and no flicker.
+- **T9:** Document the animation approach in a short section of `docs/ROADMAP.md` or `docs/COMPONENT_GUIDE.md` if needed.
+
+#### Priority
+
+- High: `prefers-reduced-motion` support, section transition motion, accessibility checks.
+- Medium: hover/focus micro-interactions, background depth.
+- Low: decorative parallax enhancements, animation documentation cleanup.
+
+#### Estimated effort
+
+- S: Define motion tokens, easing, and accessibility rules.
+- M: Implement motion in the main sections and button/card surfaces.
+- L: Test across responsive breakpoints and fine-tune timing for all supported viewports.
+
+#### Acceptance Criteria
+
+- Motion is calm, subtle, elegant, and never distracting.
+- Animations feel slow, not rushed, and support reading rather than interrupt it.
+- All animation is disabled or simplified for `prefers-reduced-motion` users.
+- Existing layout, spacing, and typography remain unchanged.
+- Build passes successfully after animation changes.
+- No new placeholder artwork or fake assets are introduced.
+
+#### Accessibility requirements
+
+- Use semantic HTML for all animated elements.
+- Respect `prefers-reduced-motion` with appropriate CSS media queries or JS detection.
+- Ensure focus states remain visible and not removed by animation.
+- Maintain contrast ratios and readable motion timing.
+- Test keyboard navigation in animated sections and confirm motion does not hinder use.
+
+#### Risks
+
+- Motion may feel too strong and distract from the calm narrative.
+- Animation timing may be inconsistent across screen sizes or devices.
+- `prefers-reduced-motion` could be omitted or implemented incompletely.
+- Performance overhead from animation may create jank on lower-end devices.
+
+#### Out of Scope
+
+- Large UI redesigns or layout changes.
+- New section content, copy, or storytelling flow changes.
+- Heavy scroll-triggered parallax or complex interactive animations.
+- Introducing new graphic assets or placeholder art.
+
+#### Definition of Done
+
+- The animation backlog is documented and ready for implementation.
+- Sprint 1.3 motion requirements follow the project vision: calm, slow, subtle, elegant, never distracting.
+- `prefers-reduced-motion` support is explicitly required.
+- No source code changes are performed in this planning task.
+- The planning document can be used directly in `docs/ROADMAP.md` or as GitHub Issue content.
+
+### Notes
+
+- Keep the motion layer minimal: the site is primarily a poetic reading experience, not an interactive showcase.
+- Preserve the existing architecture and component boundaries; apply motion within the current design system.
+
+### Ready for Sprint 1.3
+
+- This document is the complete Sprint 1.3 backlog and can be used as the implementation plan for the next work cycle.
 
 ### Sprint 2.0 — Release
 
