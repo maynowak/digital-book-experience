@@ -17,13 +17,11 @@ export default function ReelsSection() {
           {[1, 2, 3].map((i) => (
             <Card key={i}>
               {/* TODO: Replace placeholder with real Instagram Reel preview assets when available. */}
-              <figure aria-label={`Reel ${i} placeholder`} className={styles.cover}>
-                <figcaption className={styles.visuallyHidden}>
+              <figure className={styles.cover}>
+                <figcaption className="visuallyHidden">
                   Instagram Reel preview coming soon
                 </figcaption>
-                <div role="img" aria-hidden="true">
-                  Instagram Reel preview coming soon
-                </div>
+                <div aria-hidden="true">Instagram Reel preview coming soon</div>
               </figure>
               <div className={styles.body}>
                 <h3>Reel {i}</h3>

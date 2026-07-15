@@ -12,13 +12,9 @@ export default function BookSection() {
           <div className={styles.coverFrame}>
             <div className={styles.coverSurface}>
               {/* TODO: Replace placeholder with the real published book cover when available. */}
-              <figure aria-label="Book cover placeholder" className={styles.cover}>
-                <figcaption className={styles.visuallyHidden}>
-                  Book cover will be integrated
-                </figcaption>
-                <div role="img" aria-hidden="true">
-                  Book cover will be integrated
-                </div>
+              <figure className={styles.cover}>
+                <figcaption className="visuallyHidden">Book cover will be integrated</figcaption>
+                <div aria-hidden="true">Book cover will be integrated</div>
               </figure>
             </div>
           </div>

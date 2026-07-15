@@ -10,13 +10,9 @@ export default function AuthorSection() {
       <Container>
         <div className={styles.grid}>
           {/* TODO: Replace placeholder with the real author profile image when available. */}
-          <figure aria-label="Author image placeholder" className={styles.image}>
-            <figcaption className={styles.visuallyHidden}>
-              Author image will be integrated
-            </figcaption>
-            <div role="img" aria-hidden="true">
-              Author image will be integrated
-            </div>
+          <figure className={styles.image}>
+            <figcaption className="visuallyHidden">Author image will be integrated</figcaption>
+            <div aria-hidden="true">Author image will be integrated</div>
           </figure>
           <div>
             <SectionHeading
