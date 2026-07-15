@@ -23,12 +23,7 @@
   padding: calc(var(--space-8) + 1rem) 0;
   display: grid;
   gap: var(--space-6);
-}
-
-/* Subtle entrance animation: slow fade-in with slight upward movement */
-@keyframes dbx-fade-up {
-  from {
-    opacity: 0;
+   padding-top: calc(var(--space-8) + var(--nav-height));
     transform: translateY(14px);
   }
   to {
