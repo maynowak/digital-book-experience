@@ -1,7 +1,6 @@
 import Container from '../../layout/Container/Container'
 import SectionHeading from '../../ui/SectionHeading/SectionHeading'
 import Card from '../../ui/Card/Card'
-import heroImage from '../../../assets/hero/hero.webp'
 import styles from './ReelsSection.module.css'
 
 const reels = [
@@ -35,7 +34,10 @@ export default function ReelsSection() {
           {reels.map((reel) => (
             <Card key={reel.title}>
               <figure className={styles.cover}>
-                <img src={heroImage} alt="Naturmotiv aus Die Kleine und das Universum" />
+                <div className={styles.placeholder} aria-hidden="true">
+                  Reel-Vorschau
+                </div>
+                <figcaption className="visuallyHidden">Vorschau für {reel.title}</figcaption>
               </figure>
               <div className={styles.body}>
                 <h3>{reel.title}</h3>
