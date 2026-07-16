@@ -10,6 +10,16 @@ const reels = [
     description: 'Ein poetischer Einblick in die Gedankenwelt des Buches.',
     href: 'https://www.instagram.com/reel/DXmWzftiCDH/',
   },
+  {
+    title: 'Gedanken in Bewegung',
+    description: 'Kleine Momente zum Innehalten und Weiterdenken.',
+    href: 'https://www.instagram.com/maymillynowak/',
+  },
+  {
+    title: 'Die Welt der Kleinen',
+    description: 'Entdecke weitere Geschichten der Autorin auf Instagram.',
+    href: 'https://www.instagram.com/maymillynowak/',
+  },
 ]
 
 export default function ReelsSection() {
@@ -23,7 +33,7 @@ export default function ReelsSection() {
         />
         <div className={styles.grid}>
           {reels.map((reel) => (
-            <Card key={reel.href}>
+            <Card key={reel.title}>
               <figure className={styles.cover}>
                 <img src={heroImage} alt="Naturmotiv aus Die Kleine und das Universum" />
               </figure>
@@ -31,7 +41,7 @@ export default function ReelsSection() {
                 <h3>{reel.title}</h3>
                 <p>{reel.description}</p>
                 <a className={styles.link} href={reel.href} target="_blank" rel="noreferrer">
-                  Reel auf Instagram ansehen
+                  Auf Instagram ansehen
                 </a>
               </div>
             </Card>
