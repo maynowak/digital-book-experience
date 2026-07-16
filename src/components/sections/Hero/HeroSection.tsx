@@ -1,6 +1,6 @@
 import Container from "../../layout/Container/Container";
 import Button from "../../ui/Button/Button";
-import heroImage from "../../../assets/hero/hero.png";
+import heroImage from "../../../assets/hero/hero.webp";
 import styles from "./HeroSection.module.css";
 export default function HeroSection() {
   return (

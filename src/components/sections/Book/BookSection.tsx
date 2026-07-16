@@ -1,6 +1,8 @@
 import Container from '../../layout/Container/Container'
 import SectionHeading from '../../ui/SectionHeading/SectionHeading'
 import Button from '../../ui/Button/Button'
+import Image from '../../ui/Image/Image'
+import bookCover from '../../../assets/book/book-cover.webp'
 import styles from './BookSection.module.css'
 import useReveal from '../../../hooks/useReveal'
 export default function BookSection() {
@@ -11,11 +13,12 @@ export default function BookSection() {
         <div className={styles.grid}>
           <div className={styles.coverFrame}>
             <div className={styles.coverSurface}>
-              {/* TODO: Replace placeholder with the real published book cover when available. */}
-              <figure className={styles.cover}>
-                <figcaption className="visuallyHidden">Book cover will be integrated</figcaption>
-                <div aria-hidden="true">Book cover will be integrated</div>
-              </figure>
+              <Image
+                src={bookCover}
+                alt="Buchcover: Die Kleine und das Universum von Maymilly Nowak"
+                className={styles.cover}
+                style={{ height: '100%' }}
+              />
             </div>
           </div>
           <div className={styles.details}>
