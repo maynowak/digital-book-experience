@@ -25,6 +25,7 @@
 
 .form button {
   min-height: 3.5rem;
+  border-radius: var(--radius-input, 12px);
 }
 
 .form input:focus-visible,
