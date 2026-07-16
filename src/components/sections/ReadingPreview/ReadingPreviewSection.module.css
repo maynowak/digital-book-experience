@@ -1,0 +1,73 @@
+.section {
+  padding: var(--space-9, 6rem) 0;
+}
+
+.book {
+  display: grid;
+  gap: var(--space-5, 1.5rem);
+}
+
+.page {
+  position: relative;
+  min-height: 24rem;
+  padding: clamp(2rem, 7vw, 5rem);
+  background: var(--surface-0, #ffffff);
+  border-radius: var(--radius-md, 16px);
+  box-shadow: var(--shadow-subtle, 0 10px 30px rgba(2, 6, 23, 0.08));
+  animation: page-turn 360ms ease-out;
+}
+
+.pageNumber {
+  display: block;
+  margin-bottom: var(--space-6, 2.5rem);
+  color: var(--muted, #6b7785);
+  font-size: var(--fs-sm, 0.875rem);
+  letter-spacing: 0.12em;
+}
+
+.page p {
+  margin: 0;
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.65;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 1rem);
+}
+
+.navigation span {
+  color: var(--muted, #6b7785);
+  font-size: var(--fs-sm, 0.875rem);
+}
+
+@keyframes page-turn {
+  from {
+    opacity: 0;
+    transform: translateX(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    min-height: 20rem;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+  }
+}
