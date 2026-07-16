@@ -16,11 +16,11 @@ export default function QuotesSection() {
         <SectionHeading
           overline="Gedanken"
           title="Kleine Gedanken"
-          description="Auszüge aus dem Buch."
+          description="Auszüge aus dem Buch – Gedanken, die zum Weiterlesen einladen."
         />
         <div className={styles.grid}>
           {quotes.map((q) => (
-            <Card key={q}>
+            <Card key={q} hover={false}>
               <blockquote>{q}</blockquote>
             </Card>
           ))}
