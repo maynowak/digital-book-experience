@@ -65,7 +65,11 @@ export default function ReadingPreviewSection() {
                 <br />
                 Doch manche Gedanken beginnen erst, wenn sie sich bewegen.
               </p>
-              <a className={styles.afterwordLink} href="#reels" aria-label="Weich zum Reels-Bereich scrollen">
+              <a
+                className={styles.afterwordLink}
+                href="#reel-opa-bank"
+                aria-label="Weich zum ersten Reel scrollen"
+              >
                 Gedanken als Video erleben
               </a>
             </aside>
