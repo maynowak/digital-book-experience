@@ -15,8 +15,7 @@ export default function HeroSection() {
             und das Universum
           </h1>
           <p className={styles.lead}>
-            Manchmal verändert nicht die Antwort unser Leben, sondern der Blick auf die
-            Frage.
+            Manchmal verändert nicht die Antwort unser Leben, sondern der Blick auf die Frage.
           </p>
           <div className={styles.actions}>
             <Button>Mehr erfahren</Button>
