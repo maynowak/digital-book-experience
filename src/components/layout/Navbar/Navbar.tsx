@@ -3,6 +3,7 @@ import styles from './Navbar.module.css'
 const nav = [
   ['Start', '#hero'],
   ['Buch', '#book'],
+  ['Leseprobe', '#reading-preview'],
   ['Gedanken', '#quotes'],
   ['Reels', '#reels'],
   ['Autorin', '#author'],

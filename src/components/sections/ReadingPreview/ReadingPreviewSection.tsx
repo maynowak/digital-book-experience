@@ -23,6 +23,7 @@ const pages = [
 export default function ReadingPreviewSection() {
   const [pageIndex, setPageIndex] = useState(0)
   const page = pages[pageIndex]
+  const isLastPage = pageIndex === pages.length - 1
 
   return (
     <section id="reading-preview" className={styles.section}>
@@ -57,6 +58,18 @@ export default function ReadingPreviewSection() {
               Weiter
             </Button>
           </div>
+          {isLastPage ? (
+            <aside className={styles.afterword} aria-label="Übergang zu den Reels">
+              <p>
+                Jede Geschichte endet irgendwann auf Papier.
+                <br />
+                Doch manche Gedanken beginnen erst, wenn sie sich bewegen.
+              </p>
+              <a className={styles.afterwordLink} href="#reels" aria-label="Weich zum Reels-Bereich scrollen">
+                Gedanken als Video erleben
+              </a>
+            </aside>
+          ) : null}
         </div>
       </Container>
     </section>
