@@ -6,6 +6,9 @@ import Card from '../../ui/Card/Card'
 import opaBankVideo from '../../../assets/reels/Opa Bank.mov'
 import smileVideo from '../../../assets/reels/Sie schaute auf das Lächeln-final.mp4'
 import postFourVideo from '../../../assets/reels/DieKleineUndDasUniversumPost4.mov'
+import opaBankPoster from '../../../assets/reels/posters/opa-bank.jpg'
+import smilePoster from '../../../assets/reels/posters/sie-schaute.jpg'
+import postFourPoster from '../../../assets/reels/posters/die-kleine-post4.jpg'
 import styles from './ReelsSection.module.css'
 
 const reels = [
@@ -15,7 +18,7 @@ const reels = [
     description: 'Englische Sprache mit deutschen Untertiteln als bewusster erster Einstieg.',
     href: 'https://www.instagram.com/maymillynowak/',
     src: opaBankVideo,
-    posterLabel: 'Erstes Reel',
+    poster: opaBankPoster,
   },
   {
     id: 'reel-smile',
@@ -23,7 +26,7 @@ const reels = [
     description: 'Ein ruhiger Moment, der den Blick auf Gedanken und Gefühle lenkt.',
     href: 'https://www.instagram.com/maymillynowak/',
     src: smileVideo,
-    posterLabel: 'Zweites Reel',
+    poster: smilePoster,
   },
   {
     id: 'reel-post-4',
@@ -31,7 +34,7 @@ const reels = [
     description: 'Weitere bewegte Eindrücke aus der poetischen Welt des Buches.',
     href: 'https://www.instagram.com/maymillynowak/',
     src: postFourVideo,
-    posterLabel: 'Drittes Reel',
+    poster: postFourPoster,
   },
 ]
 
@@ -40,33 +43,17 @@ const reelOrder = reels.reduce<Record<string, number>>((accumulator, reel, index
   return accumulator
 }, {})
 
-function createPoster(title: string, label: string) {
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
-      <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#10202d" />
-          <stop offset="100%" stop-color="#1b3444" />
-        </linearGradient>
-      </defs>
-      <rect width="800" height="1000" fill="url(#bg)" />
-      <rect x="48" y="48" width="704" height="904" rx="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" />
-      <text x="92" y="140" fill="rgba(255,255,255,0.72)" font-family="Georgia, serif" font-size="30" letter-spacing="4">${label}</text>
-      <text x="92" y="430" fill="#f8f3ea" font-family="Georgia, serif" font-size="64">${title}</text>
-      <text x="92" y="860" fill="rgba(255,255,255,0.72)" font-family="Georgia, serif" font-size="28">Maymilly Nowak</text>
-    </svg>
-  `)}`
-}
-
 type Reel = (typeof reels)[number]
 
 type ReelCardProps = {
   reel: Reel
   isActive: boolean
   onVisibilityChange: (id: string, ratio: number) => void
+  onEnded: (id: string) => void
+  onRegister: (id: string, element: HTMLElement | null) => void
 }
 
-function ReelCard({ reel, isActive, onVisibilityChange }: ReelCardProps) {
+function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: ReelCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const coverRef = useRef<HTMLElement | null>(null)
   const [isMuted, setIsMuted] = useState(true)
@@ -132,12 +119,14 @@ function ReelCard({ reel, isActive, onVisibilityChange }: ReelCardProps) {
 
     preloadObserver.observe(element)
     visibilityObserver.observe(element)
+    onRegister(reel.id, element)
 
     return () => {
+      onRegister(reel.id, null)
       preloadObserver.disconnect()
       visibilityObserver.disconnect()
     }
-  }, [onVisibilityChange, reel.id, releaseVideo])
+  }, [onRegister, onVisibilityChange, reel.id, releaseVideo])
 
   useEffect(() => {
     const video = videoRef.current
@@ -211,10 +200,9 @@ function ReelCard({ reel, isActive, onVisibilityChange }: ReelCardProps) {
           ref={videoRef}
           className={styles.media}
           muted={isMuted}
-          loop
           playsInline
           preload="metadata"
-          poster={createPoster(reel.title, reel.posterLabel)}
+          poster={reel.poster}
           onLoadedMetadata={() => setIsLoading(true)}
           onCanPlay={() => {
             setIsReady(true)
@@ -226,6 +214,10 @@ function ReelCard({ reel, isActive, onVisibilityChange }: ReelCardProps) {
             setIsPlaying(true)
           }}
           onPause={() => setIsPlaying(false)}
+          onEnded={() => {
+            setIsPlaying(false)
+            onEnded(reel.id)
+          }}
           aria-hidden="true"
         />
         {isLoading ? <span className={styles.loader} aria-hidden="true" /> : null}
@@ -257,7 +249,22 @@ function ReelCard({ reel, isActive, onVisibilityChange }: ReelCardProps) {
 
 export default function ReelsSection() {
   const visibilityRef = useRef<Record<string, number>>({})
+  const reelElementRefs = useRef<Record<string, HTMLElement | null>>({})
   const [activeReelId, setActiveReelId] = useState<string | null>(null)
+
+  const scrollToReel = useCallback((id: string) => {
+    const element = reelElementRefs.current[id]
+
+    if (!element) {
+      return
+    }
+
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [])
+
+  const handleRegister = useCallback((id: string, element: HTMLElement | null) => {
+    reelElementRefs.current[id] = element
+  }, [])
 
   const handleVisibilityChange = useCallback((id: string, ratio: number) => {
     if (ratio > 0) {
@@ -280,6 +287,29 @@ export default function ReelsSection() {
     setActiveReelId((current) => (current === nextActiveReelId ? current : nextActiveReelId))
   }, [])
 
+  const handleEnded = useCallback(
+    (id: string) => {
+      const currentIndex = reelOrder[id]
+      const nextReel = reels[currentIndex + 1]
+
+      if (!nextReel) {
+        return
+      }
+
+      setActiveReelId(nextReel.id)
+      scrollToReel(nextReel.id)
+    },
+    [scrollToReel]
+  )
+
+  const handleSelectReel = useCallback(
+    (id: string) => {
+      setActiveReelId(id)
+      scrollToReel(id)
+    },
+    [scrollToReel]
+  )
+
   return (
     <section id="reels" className={styles.section}>
       <Container>
@@ -295,8 +325,28 @@ export default function ReelsSection() {
               reel={reel}
               isActive={activeReelId === reel.id}
               onVisibilityChange={handleVisibilityChange}
+              onEnded={handleEnded}
+              onRegister={handleRegister}
             />
           ))}
+        </div>
+        <div className={styles.pagination} aria-label="Reels Navigation" role="tablist">
+          {reels.map((reel, index) => {
+            const isSelected = activeReelId === reel.id
+
+            return (
+              <button
+                key={reel.id}
+                type="button"
+                className={`${styles.paginationDot} ${isSelected ? styles.paginationDotActive : ''}`}
+                aria-label={`Reel ${index + 1}: ${reel.title}`}
+                aria-pressed={isSelected}
+                onClick={() => handleSelectReel(reel.id)}
+              >
+                {index + 1}
+              </button>
+            )
+          })}
         </div>
       </Container>
     </section>
