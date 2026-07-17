@@ -196,42 +196,50 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
   return (
     <Card id={reel.id} className={styles.card}>
       <figure className={styles.cover} ref={coverRef}>
-        <video
-          ref={videoRef}
-          className={styles.media}
-          muted={isMuted}
-          playsInline
-          preload="metadata"
-          poster={reel.poster}
-          onLoadedMetadata={() => setIsLoading(true)}
-          onCanPlay={() => {
-            setIsReady(true)
-            setIsLoading(false)
-          }}
-          onWaiting={() => setIsLoading(true)}
-          onPlaying={() => {
-            setIsLoading(false)
-            setIsPlaying(true)
-          }}
-          onPause={() => setIsPlaying(false)}
-          onEnded={() => {
-            setIsPlaying(false)
-            onEnded(reel.id)
-          }}
-          aria-hidden="true"
-        />
-        {isLoading ? <span className={styles.loader} aria-hidden="true" /> : null}
-        <button
-          type="button"
-          className={styles.audioToggle}
-          onClick={handleToggleAudio}
-          aria-pressed={!isMuted}
-          aria-label={
-            isMuted ? `Ton für ${reel.title} aktivieren` : `Ton für ${reel.title} ausschalten`
-          }
-        >
-          {isMuted ? '🔇 Ton aus' : '🔊 Ton aktiv'}
-        </button>
+        <div className={styles.mediaFrame}>
+          <img
+            className={`${styles.poster} ${isPlaying ? styles.posterHidden : ''}`}
+            src={reel.poster}
+            alt=""
+            aria-hidden="true"
+          />
+          <video
+            ref={videoRef}
+            className={styles.media}
+            muted={isMuted}
+            playsInline
+            preload="metadata"
+            poster={reel.poster}
+            onLoadedMetadata={() => setIsLoading(true)}
+            onCanPlay={() => {
+              setIsReady(true)
+              setIsLoading(false)
+            }}
+            onWaiting={() => setIsLoading(true)}
+            onPlaying={() => {
+              setIsLoading(false)
+              setIsPlaying(true)
+            }}
+            onPause={() => setIsPlaying(false)}
+            onEnded={() => {
+              setIsPlaying(false)
+              onEnded(reel.id)
+            }}
+            aria-hidden="true"
+          />
+          {isLoading ? <span className={styles.loader} aria-hidden="true" /> : null}
+          <button
+            type="button"
+            className={styles.audioToggle}
+            onClick={handleToggleAudio}
+            aria-pressed={!isMuted}
+            aria-label={
+              isMuted ? `Ton für ${reel.title} aktivieren` : `Ton für ${reel.title} ausschalten`
+            }
+          >
+            <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
+          </button>
+        </div>
         <figcaption className="visuallyHidden">
           Vorschau für {reel.title} {isPlaying ? 'wird abgespielt' : 'ist pausiert'}
         </figcaption>
@@ -343,7 +351,7 @@ export default function ReelsSection() {
                 aria-pressed={isSelected}
                 onClick={() => handleSelectReel(reel.id)}
               >
-                {index + 1}
+                <span aria-hidden="true">{isSelected ? '●' : '○'}</span>
               </button>
             )
           })}

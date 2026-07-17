@@ -133,3 +133,30 @@ Implementation Mode
 • Minimize AI credit usage where possible.
 
 Welcome to the team.
+
+
+
+## may notizen
+Lies zuerst vollständig:
+
+docs/AI_AGENT_PLAYBOOK.md
+
+und
+
+docs/PROJECT_RULES.md
+
+Diese Regeln haben Vorrang vor der folgenden Aufgabe, sofern ich sie nicht ausdrücklich überschreibe.
+
+Analysiere zunächst die bestehende Implementierung. Arbeite ausschließlich minimal-invasiv, erhalte Architektur, Design und bestehende Funktionalität und ändere nur den Code, der zur Lösung der Aufgabe notwendig ist.
+
+==========================================================
+TASK
+==========================================================
+
+<Hier folgt ausschließlich die eigentliche Aufgabe.>
+
+==========================================================
+OUTPUT
+==========================================================
+
+Liefere am Ende die Zusammenfassung entsprechend den Vorgaben aus dem AI_AGENT_PLAYBOOK.md.
