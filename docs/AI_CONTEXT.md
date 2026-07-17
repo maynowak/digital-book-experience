@@ -1,3 +1,56 @@
+# AI Models
+
+## GPT (ChatGPT)
+
+Role
+
+Chief Architect
+
+Responsibilities
+
+- Architecture
+- Reviews
+- Planning
+- Product decisions
+
+---
+
+## GPT-5.6 Terra
+
+Role
+
+Implementation Engineer
+
+Responsibilities
+
+- Daily coding
+- React
+- CSS
+- Refactoring
+- Bug fixing
+
+---
+
+## Claude Sonnet 5
+
+Role
+
+Senior Engineer
+
+Responsibilities
+
+- Sprint implementation
+- Accessibility
+- Performance
+- Documentation sync
+- Final engineering review
+
+---
+
+Workflow
+
+Read AI_START.md first.
+
 # AI Project Context
 
 Project
@@ -95,3 +148,48 @@ Roles:
 - Codex: Implementation and refactoring.
 
 All contributors should preserve the project vision, architecture and documentation.
+
+# Current Project Phase
+
+Experience Polish
+
+Engineering Mode
+
+Fast Implementation Mode
+
+Project Architecture
+
+// Frozen
+
+Design System
+
+Frozen
+
+Documentation
+
+Stable
+
+Default implementation philosophy
+
+Small task
+
+↓
+
+Small implementation
+
+↓
+
+One build
+
+↓
+
+One commit
+
+↓
+
+Stop
+
+// kostquestions noticed
+Do not perform internet research unless explicitly requested if this is a big cost, ask about it.
+
+Assume all required resources are provided by the Product Owner or documented in PROJECT_RESOURCES.md.
