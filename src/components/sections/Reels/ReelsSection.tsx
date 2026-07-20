@@ -51,12 +51,13 @@ type ReelCardProps = {
   onVisibilityChange: (id: string, ratio: number) => void
   onEnded: (id: string) => void
   onRegister: (id: string, element: HTMLElement | null) => void
+  globalMuted: boolean
+  onToggleMute: () => void
 }
 
-function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: ReelCardProps) {
+function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onSelect }: ReelCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const coverRef = useRef<HTMLElement | null>(null)
-  const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isReady, setIsReady] = useState(false)
@@ -102,7 +103,7 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
         }
       },
       {
-        rootMargin: '25% 0px 25% 0px',
+        rootMargin: '40% 0px 40% 0px',
         threshold: 0,
       }
     )
@@ -156,7 +157,7 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
       return
     }
 
-    video.muted = isMuted
+    video.muted = globalMuted
     const playAttempt = video.play()
 
     if (playAttempt) {
@@ -170,31 +171,14 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
           video.play().catch(() => undefined)
         })
     }
-  }, [isActive, isMuted, isReady, shouldLoad])
+  }, [isActive, isReady, shouldLoad])
 
-  const handleToggleAudio = useCallback(() => {
-    const video = videoRef.current
-
-    setIsMuted((current) => {
-      const next = !current
-
-      if (video) {
-        video.muted = next
-
-        if (isActive) {
-          video.play().catch(() => {
-            video.muted = true
-            return undefined
-          })
-        }
-      }
-
-      return next
-    })
-  }, [isActive])
+  handleToggleAudio = useCallback(() => {
+    onToggleMute()
+  }, [])
 
   return (
-    <Card id={reel.id} className={styles.card}>
+    <Card id={reel.id} className={styles.card} onClick={() => onSelect?.(reel.id)} tabIndex={0}>
       <figure className={styles.cover} ref={coverRef}>
         <div className={styles.mediaFrame}>
           <img
@@ -206,7 +190,7 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
           <video
             ref={videoRef}
             className={styles.media}
-            muted={isMuted}
+            muted={globalMuted}
             playsInline
             preload="metadata"
             poster={reel.poster}
@@ -232,12 +216,12 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
             type="button"
             className={styles.audioToggle}
             onClick={handleToggleAudio}
-            aria-pressed={!isMuted}
+            aria-pressed={!globalMuted}
             aria-label={
-              isMuted ? `Ton für ${reel.title} aktivieren` : `Ton für ${reel.title} ausschalten`
+              globalMuted ? `Ton für ${reel.title} aktivieren` : `Ton für ${reel.title} ausschalten`
             }
           >
-            <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
+            <span aria-hidden="true">{globalMuted ? '🔇' : '🔊'}</span>
           </button>
         </div>
         <figcaption className="visuallyHidden">
@@ -258,8 +242,10 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister }: R
 export default function ReelsSection() {
   const visibilityRef = useRef<Record<string, number>>({})
   const reelElementRefs = useRef<Record<string, HTMLElement | null>>({})
+  const [globalMuted, setGlobalMuted] = useState(true)
   const [activeReelId, setActiveReelId] = useState<string | null>(null)
 
+  const handleToggleGlobalMute = () => setGlobalMuted(prev => !prev);
   const scrollToReel = useCallback((id: string) => {
     const element = reelElementRefs.current[id]
 
@@ -335,6 +321,8 @@ export default function ReelsSection() {
               onVisibilityChange={handleVisibilityChange}
               onEnded={handleEnded}
               onRegister={handleRegister}
+                globalMuted={globalMuted}
+                onToggleMute={handleToggleGlobalMute}
             />
           ))}
         </div>
