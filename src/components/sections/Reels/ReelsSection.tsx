@@ -48,20 +48,24 @@ type Reel = (typeof reels)[number]
 type ReelCardProps = {
   reel: Reel
   isActive: boolean
-  onVisibilityChange: (id: string, ratio: number) => void
   onEnded: (id: string) => void
   onRegister: (id: string, element: HTMLElement | null) => void
   globalMuted: boolean
   onToggleMute: () => void
+  onSelect?: (id: string) => void
 }
 
-function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onSelect }: ReelCardProps) {
+function ReelCard({ reel, isActive, onEnded, onRegister, onSelect, globalMuted, onToggleMute }: ReelCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const coverRef = useRef<HTMLElement | null>(null)
+  const progressRef = useRef<HTMLDivElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [hasPlayed, setHasPlayed] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const [shouldLoad, setShouldLoad] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   const releaseVideo = useCallback(() => {
     const video = videoRef.current
@@ -74,8 +78,11 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
     video.removeAttribute('src')
     video.load()
     setIsPlaying(false)
+    setHasPlayed(false)
+    setIsPaused(false)
     setIsLoading(false)
     setIsReady(false)
+    setProgress(0)
   }, [])
 
   useEffect(() => {
@@ -98,7 +105,6 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
           entry.boundingClientRect.top > window.innerHeight * 1.35
         ) {
           setShouldLoad(false)
-          onVisibilityChange(reel.id, 0)
           releaseVideo()
         }
       },
@@ -108,26 +114,14 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
       }
     )
 
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        onVisibilityChange(reel.id, entry.isIntersecting ? entry.intersectionRatio : 0)
-      },
-      {
-        threshold: [0.35, 0.55, 0.75],
-        rootMargin: '-12% 0px -12% 0px',
-      }
-    )
-
     preloadObserver.observe(element)
-    visibilityObserver.observe(element)
     onRegister(reel.id, element)
 
     return () => {
       onRegister(reel.id, null)
       preloadObserver.disconnect()
-      visibilityObserver.disconnect()
     }
-  }, [onRegister, onVisibilityChange, reel.id, releaseVideo])
+  }, [onRegister, reel.id, releaseVideo])
 
   useEffect(() => {
     const video = videoRef.current
@@ -148,12 +142,18 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
     }
 
     if (!shouldLoad || !isActive) {
+      setHasPlayed(false)
+      setIsPaused(false)
       video.pause()
       setIsPlaying(false)
       return
     }
 
     if (!isReady) {
+      return
+    }
+
+    if (isPaused) {
       return
     }
 
@@ -167,33 +167,56 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
         })
         .catch(() => {
           video.muted = true
-          setIsMuted(true)
           video.play().catch(() => undefined)
         })
     }
-  }, [isActive, isReady, shouldLoad])
+  }, [isActive, isReady, shouldLoad, globalMuted, isPaused])
 
-  handleToggleAudio = useCallback(() => {
-    onToggleMute()
-  }, [])
+  const handleMediaClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const video = videoRef.current
+
+    if (!video) {
+      return
+    }
+
+    if (!isActive) {
+      onSelect?.(reel.id)
+      return
+    }
+
+    if (video.paused) {
+      setIsPaused(false)
+      video.play()
+    } else {
+      setIsPaused(true)
+      video.pause()
+    }
+  }
+
+  const handleProgressClick = (e: React.MouseEvent) => {
+    const video = videoRef.current
+
+    if (!video || !video.duration) {
+      return
+    }
+
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const ratio = Math.max(0, Math.min(1, x / rect.width))
+    video.currentTime = ratio * video.duration
+  }
 
   return (
-    <Card id={reel.id} className={styles.card} onClick={() => onSelect?.(reel.id)} tabIndex={0}>
+    <Card id={reel.id} className={styles.card} tabIndex={0}>
       <figure className={styles.cover} ref={coverRef}>
-        <div className={styles.mediaFrame}>
-          <img
-            className={`${styles.poster} ${isPlaying ? styles.posterHidden : ''}`}
-            src={reel.poster}
-            alt=""
-            aria-hidden="true"
-          />
+        <div className={styles.mediaFrame} onClick={handleMediaClick}>
           <video
             ref={videoRef}
             className={styles.media}
             muted={globalMuted}
             playsInline
             preload="metadata"
-            poster={reel.poster}
             onLoadedMetadata={() => setIsLoading(true)}
             onCanPlay={() => {
               setIsReady(true)
@@ -203,19 +226,33 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
             onPlaying={() => {
               setIsLoading(false)
               setIsPlaying(true)
+              setHasPlayed(true)
             }}
             onPause={() => setIsPlaying(false)}
             onEnded={() => {
               setIsPlaying(false)
+              setIsPaused(false)
               onEnded(reel.id)
+            }}
+            onTimeUpdate={() => {
+              const video = videoRef.current
+              if (video && video.duration) {
+                setProgress((video.currentTime / video.duration) * 100)
+              }
             }}
             aria-hidden="true"
           />
+          <div className={`${styles.posterContainer} ${hasPlayed ? styles.posterContainerHidden : ''}`}>
+            <img className={styles.posterImage} src={reel.poster} alt="" aria-hidden="true" />
+          </div>
           {isLoading ? <span className={styles.loader} aria-hidden="true" /> : null}
           <button
             type="button"
             className={styles.audioToggle}
-            onClick={handleToggleAudio}
+            onClick={(e) => {
+              e.stopPropagation()
+              onToggleMute()
+            }}
             aria-pressed={!globalMuted}
             aria-label={
               globalMuted ? `Ton für ${reel.title} aktivieren` : `Ton für ${reel.title} ausschalten`
@@ -223,6 +260,9 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
           >
             <span aria-hidden="true">{globalMuted ? '🔇' : '🔊'}</span>
           </button>
+          <div className={styles.progressBar} ref={progressRef} onClick={handleProgressClick}>
+            <div className={styles.progressTrack} style={{ width: `${progress}%` }} />
+          </div>
         </div>
         <figcaption className="visuallyHidden">
           Vorschau für {reel.title} {isPlaying ? 'wird abgespielt' : 'ist pausiert'}
@@ -240,10 +280,9 @@ function ReelCard({ reel, isActive, onVisibilityChange, onEnded, onRegister, onS
 }
 
 export default function ReelsSection() {
-  const visibilityRef = useRef<Record<string, number>>({})
   const reelElementRefs = useRef<Record<string, HTMLElement | null>>({})
   const [globalMuted, setGlobalMuted] = useState(true)
-  const [activeReelId, setActiveReelId] = useState<string | null>(null)
+  const [activeReelId, setActiveReelId] = useState<string>(reels[0].id)
 
   const handleToggleGlobalMute = () => setGlobalMuted(prev => !prev);
   const scrollToReel = useCallback((id: string) => {
@@ -258,27 +297,6 @@ export default function ReelsSection() {
 
   const handleRegister = useCallback((id: string, element: HTMLElement | null) => {
     reelElementRefs.current[id] = element
-  }, [])
-
-  const handleVisibilityChange = useCallback((id: string, ratio: number) => {
-    if (ratio > 0) {
-      visibilityRef.current[id] = ratio
-    } else {
-      delete visibilityRef.current[id]
-    }
-
-    const nextActiveReelId =
-      Object.entries(visibilityRef.current)
-        .sort((left, right) => {
-          if (right[1] === left[1]) {
-            return reelOrder[left[0]] - reelOrder[right[0]]
-          }
-
-          return right[1] - left[1]
-        })
-        .at(0)?.[0] ?? null
-
-    setActiveReelId((current) => (current === nextActiveReelId ? current : nextActiveReelId))
   }, [])
 
   const handleEnded = useCallback(
@@ -318,11 +336,11 @@ export default function ReelsSection() {
               key={reel.id}
               reel={reel}
               isActive={activeReelId === reel.id}
-              onVisibilityChange={handleVisibilityChange}
               onEnded={handleEnded}
               onRegister={handleRegister}
-                globalMuted={globalMuted}
-                onToggleMute={handleToggleGlobalMute}
+              onSelect={handleSelectReel}
+              globalMuted={globalMuted}
+              onToggleMute={handleToggleGlobalMute}
             />
           ))}
         </div>
