@@ -62,6 +62,21 @@
   align-items: center;
   justify-content: center;
 }
+.coverSurface::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: -25%;
+  width: 150%;
+  height: 110%;
+  background: url('../../../assets/book/botanical-branch.svg') no-repeat center / contain;
+  opacity: 0.06;
+  filter: blur(1.5px) brightness(1.2) saturate(0.5);
+  -webkit-mask-image: linear-gradient(180deg, transparent 15%, black 40%, transparent 85%);
+  mask-image: linear-gradient(180deg, transparent 15%, black 40%, transparent 85%);
+  pointer-events: none;
+  z-index: -2;
+}
 .coverSurface::after {
   content: '';
   position: absolute;
