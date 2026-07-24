@@ -28,30 +28,6 @@
   perspective: 800px;
   transform-style: preserve-3d;
 }
-.coverFrame::before {
-  content: '';
-  position: absolute;
-  bottom: 2%;
-  left: 2%;
-  width: calc(100% - 4%);
-  height: 8px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #ede5d5 0px,
-      #ede5d5 1.5px,
-      #e4d8c4 1.5px,
-      #e4d8c4 2.5px
-    );
-  border-radius: 0 0 6px 6px;
-  z-index: -1;
-  pointer-events: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.coverFrame:has(.coverSurface:hover)::before {
-  transform: translateY(-6px);
-}
 .coverFrame::after {
   content: '';
   position: absolute;
@@ -62,42 +38,35 @@
 
 .coverSurface {
   position: relative;
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.25),
-    0 60px 120px rgba(0, 0, 0, 0.35);
   transition:
-    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    box-shadow 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
   transform-style: preserve-3d;
   aspect-ratio: 2 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.coverSurface::before {
+.coverSurface::after {
   content: '';
   position: absolute;
-  top: 0.5%;
-  left: 100%;
-  width: 12px;
-  height: 99%;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 1px,
-      rgba(200, 185, 165, 0.12) 1px,
-      rgba(200, 185, 165, 0.12) 2px
-    );
-  border-radius: 0 6px 6px 0;
+  top: -3px;
+  left: -4px;
+  width: calc(100% + 12px);
+  height: calc(100% + 6px);
+  background: linear-gradient(135deg, #1d2330, #2b3241);
+  border-radius: 2px 8px 8px 2px;
+  border-right: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 3px 0 6px rgba(0, 0, 0, 0.12),
+    0 30px 70px rgba(0, 0, 0, 0.28),
+    0 60px 120px rgba(0, 0, 0, 0.18);
+  transform: translate(8px, 10px);
   z-index: -1;
   pointer-events: none;
 }
 .coverSurface:hover {
-  transform: translateY(-6px) rotateY(-4deg) rotateX(1deg) scale(1.015);
-  box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.35),
-    0 80px 160px rgba(0, 0, 0, 0.45);
+  transform: translateY(-6px) rotateY(-3deg) scale(1.01);
+  box-shadow: none;
 }
 
 .cover {
