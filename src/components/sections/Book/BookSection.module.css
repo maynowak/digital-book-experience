@@ -66,10 +66,10 @@
   content: '';
   position: absolute;
   top: 2%;
-  left: -10%;
-  width: 120%;
+  left: 0;
+  width: 115%;
   height: 104%;
-  background: url('../../../assets/book/book-3d-underlay.svg') no-repeat center / contain;
+  background: url('../../../assets/book/book-3d-underlay.svg') no-repeat left center / contain;
   box-shadow:
     0 30px 70px rgba(0, 0, 0, 0.28),
     0 60px 120px rgba(0, 0, 0, 0.18);
