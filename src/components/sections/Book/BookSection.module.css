@@ -28,6 +28,22 @@
   perspective: 800px;
   transform-style: preserve-3d;
 }
+.coverFrame::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -40%;
+  width: 200%;
+  height: 200%;
+  transform: translateY(-50%);
+  background: url('../../../assets/book/openclipart-vectors-book-147566.svg') no-repeat center / contain;
+  opacity: 0.1;
+  filter: blur(3px) brightness(1.15) saturate(0.75) contrast(0.95);
+  -webkit-mask-image: radial-gradient(ellipse at 35% 50%, black 25%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 35% 50%, black 25%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
 .coverFrame::after {
   content: '';
   position: absolute;
