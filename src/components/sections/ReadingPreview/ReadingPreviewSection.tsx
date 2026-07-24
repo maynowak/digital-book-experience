@@ -31,7 +31,7 @@ export default function ReadingPreviewSection() {
         <SectionHeading
           overline="Leseprobe"
           title="Ein paar Seiten zum Innehalten"
-          description="Ein offizieller Auszug aus Die Kleine und das Universum."
+          description={"Ein offizieller Auszug aus\nDie Kleine und das Universum.\n\nNimm dir einen Moment Zeit.\nVielleicht beginnt eine Geschichte,\ndie dich noch ein Stück begleitet."}
         />
         <div className={styles.book}>
           <article className={styles.page} aria-live="polite">
