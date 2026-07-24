@@ -16,7 +16,7 @@ Product Owner
 
 Chief Architect
 • ChatGPT (GPT)
-
+Das Skript liegt unter scripts/debug-layers.mjs und lässt sich mit npm run debug:layers ausführen. Es startet den Vite-Server, öffnet die Seite im Headless-Chromium und sammelt automatisch getComputedStyle(), Layout-Maße und checkVisibility() für posterContainer, posterImage und video – plus Compositor/Stacking-Hinweise.
 Senior Implementation Engineer
 • Claude Sonnet 5
 
@@ -160,3 +160,6 @@ OUTPUT
 ==========================================================
 
 Liefere am Ende die Zusammenfassung entsprechend den Vorgaben aus dem AI_AGENT_PLAYBOOK.md.
+
+#notice for debugscript
+Das Skript liegt unter scripts/debug-layers.mjs und lässt sich mit npm run debug:layers ausführen. Es startet den Vite-Server, öffnet die Seite im Headless-Chromium und sammelt automatisch getComputedStyle(), Layout-Maße und checkVisibility() für posterContainer, posterImage und video – plus Compositor/Stacking-Hinweise.

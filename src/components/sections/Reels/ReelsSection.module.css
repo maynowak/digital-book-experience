@@ -70,23 +70,25 @@
 .mediaFrame > * {
   grid-area: 1 / 1;
 }
-.posterContainer {
+.posterOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
   border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: inherit;
   overflow: hidden;
-  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 2s;
 }
-.posterContainerHidden .posterImage {
+.posterOverlayHidden {
   opacity: 0;
 }
-.posterImage {
+.posterOverlay img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
-  transition: opacity 2s;
 }
 .media {
   position: relative;

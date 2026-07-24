@@ -28,8 +28,8 @@ const EVAL_FN = () => {
     return info
   }
 
-  var container = document.querySelector('[class*="posterContainer"]')
-  var image = document.querySelector('[class*="posterImage"]')
+  var container = document.querySelector('[class*="posterOverlay"]')
+  var image = container ? container.querySelector('img') : null
   var video = document.querySelector('video')
 
   var report = {
@@ -117,7 +117,7 @@ async function main() {
 
   await page.goto(url, { waitUntil: 'networkidle' })
   await page.waitForTimeout(2000)
-  await page.waitForSelector('[class*="posterContainer"]', { timeout: 5000 })
+  await page.waitForSelector('[class*="posterOverlay"]', { timeout: 5000 })
 
   // Snapshot 1: initial state (before any interaction / scroll)
   console.log('=== Initial State (before scroll/autoplay) ===')
@@ -138,7 +138,7 @@ async function main() {
 
   // Scroll into view (triggers autoplay via IntersectionObserver)
   await page.evaluate(() => {
-    const el = document.querySelector('[class*="posterContainer"]')
+    const el = document.querySelector('[class*="posterOverlay"]')
     if (el) el.scrollIntoView({ block: 'center' })
   })
   await page.waitForTimeout(500)

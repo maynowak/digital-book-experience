@@ -242,8 +242,8 @@ function ReelCard({ reel, isActive, onEnded, onRegister, onSelect, globalMuted, 
             }}
             aria-hidden="true"
           />
-          <div className={`${styles.posterContainer} ${hasPlayed ? styles.posterContainerHidden : ''}`}>
-            <img className={styles.posterImage} src={reel.poster} alt="" aria-hidden="true" />
+          <div className={`${styles.posterOverlay} ${hasPlayed ? styles.posterOverlayHidden : ''}`}>
+            <img src={reel.poster} alt="" aria-hidden="true" />
           </div>
           {isLoading ? <span className={styles.loader} aria-hidden="true" /> : null}
           <button
