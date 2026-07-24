@@ -24,11 +24,20 @@ export default function BookSection() {
           <div className={styles.details}>
             <SectionHeading
               overline="Das Buch"
-              title="Eine Reise durch Gedanken"
-              description="Poetische Impulse."
+              title="Die Kleine und das Universum"
+              description={"Eine Reise durch Gedanken.\nPoetische Impulse.\nZum Innehalten."}
             />
+            <dl className={styles.meta}>
+              <div><dt>ISBN</dt><dd>978-3-7529-8566-5</dd></div>
+              <div><dt>Format</dt><dd>A5 Softcover</dd></div>
+              <div><dt>Seiten</dt><dd>112</dd></div>
+              <div><dt>Sprache</dt><dd>Deutsch</dd></div>
+              <div><dt>Veröffentlichung</dt><dd>14.08.2020</dd></div>
+              <div><dt>Verlag</dt><dd>Books on Demand</dd></div>
+            </dl>
             <div className={styles.actions}>
-              <Button variant="outline">Leseprobe</Button>
+              <Button variant="primary">Leseprobe</Button>
+              <Button variant="outline">Zum Buch</Button>
             </div>
           </div>
         </div>
