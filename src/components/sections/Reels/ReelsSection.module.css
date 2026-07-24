@@ -1,6 +1,44 @@
 .section {
   padding: var(--space-9) 0;
 }
+.section header {
+  margin-bottom: 3rem;
+  animation: heading-fade-in 800ms ease-out both;
+}
+.section header p:first-child {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+.section header h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.08;
+  margin: 0 0 1.25rem;
+}
+.section header h2 + p {
+  max-width: 560px;
+  margin-top: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: pre-line;
+}
+@keyframes heading-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

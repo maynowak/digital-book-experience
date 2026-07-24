@@ -328,7 +328,7 @@ export default function ReelsSection() {
         <SectionHeading
           overline="Instagram"
           title="Geschichten in Bewegung"
-          description="Kurze Reels."
+          description="Momente zum Innehalten.\nGedanken zum Mitnehmen.\nAls kurze Reels erzählt."
         />
         <div className={styles.grid}>
           {reels.map((reel) => (
