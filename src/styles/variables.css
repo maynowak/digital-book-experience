@@ -15,4 +15,7 @@
   --accent-bg: linear-gradient(90deg, rgba(255, 107, 107, 0.06), rgba(61, 108, 139, 0.04));
   --fs-sm: 0.8rem;
   --fs-xl: 2.5rem;
+  --radius-lg: 999px;
+  --space-3: 0.75rem;
+  --space-5: 1.5rem;
 }
