@@ -37,7 +37,7 @@ export default function BookSection() {
               <div><dt>Seiten</dt><dd>112</dd></div>
               <div><dt>Sprache</dt><dd>Deutsch</dd></div>
               <div><dt>Veröffentlichung</dt><dd>14.08.2020</dd></div>
-              <div><dt>Verlag</dt><dd>Books on Demand</dd></div>
+              <div><dt>Verlag</dt><dd><a href="https://www.epubli.com/autoren/maymilly-nowak-34213" target="_blank" rel="noopener noreferrer">epubli</a></dd></div>
             </dl>
             <div className={styles.actions}>
               <Button variant="primary">Leseprobe</Button>
