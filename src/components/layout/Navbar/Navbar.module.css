@@ -14,6 +14,16 @@
   min-height: 64px;
 }
 
+.title {
+  margin-right: auto;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
 .desktopLinks {
   display: flex;
   gap: 1.5rem;

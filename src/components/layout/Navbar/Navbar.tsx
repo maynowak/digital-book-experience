@@ -35,6 +35,9 @@ export default function Navbar() {
     <header className={styles.header}>
       <Container size="wide">
         <nav className={styles.nav} aria-label="Hauptnavigation">
+          <a href="#hero" className={styles.title}>
+            Die Kleine und das Universum
+          </a>
           <div className={styles.desktopLinks}>
             {nav.map(([l, h]) => (
               <a key={h} href={h}>
