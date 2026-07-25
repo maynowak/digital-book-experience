@@ -80,12 +80,20 @@
   background: linear-gradient(180deg, transparent, rgba(81, 65, 48, 0.14), transparent);
 }
 
-.pageNumber {
+.pageLabel {
   display: block;
-  margin-bottom: var(--space-6, 2.5rem);
-  color: #6a5a48;
+  color: #8a7a68;
   font-size: var(--fs-sm, 0.875rem);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+.pageTitle {
+  margin: 0 0 var(--space-6, 2.5rem);
+  color: #3d3229;
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  letter-spacing: -0.01em;
 }
 
 .page p {

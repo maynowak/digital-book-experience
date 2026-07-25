@@ -5,25 +5,45 @@ import SectionHeading from '../../ui/SectionHeading/SectionHeading'
 import Button from '../../ui/Button/Button'
 import styles from './ReadingPreviewSection.module.css'
 
-const pages = [
+type Page = {
+  heading: string | null
+  text: string
+}
+
+const groups: { title: string; pages: string[] }[] = [
   {
-    number: '01',
-    text: 'Eines morgens, als die Sonne noch tief stand, war es Spätsommer und Herbstanfang. Ich stand da und schaute in das All.',
+    title: 'Das Geräusch wieder',
+    pages: [
+      'Das Geräusch wieder und wieder. Was ist das denn, dachte sie sich und wurde langsam unruhig. Jacke, Jacke wo ist meine Jacke und das Geräusch immer fast zur selben Zeit wo sie einen blick warf. Als sie dann auf einmal auf der anderen Seite des Feuers vom Zelt aus gesehen einen Schatten auf dem Boden sah, der sich ihr näherte. Sie dachte, aber ich bin doch schon groß, das gibt\'s alles nicht. Kurz bevor sie schreiend ins Haus rennen wollte, hörte sie Muho. Muho ist ihre Katze, sie kam ganz galant und völlig entspannt zur ihren Beinen und fing zu schnurren an. Dabei musste sie auf einmal lächeln und sagte Muho!',
+    ],
   },
   {
-    number: '02',
-    text: 'Als ich schaute und das Wunderschöne am Horizont mich fast sozusagen umhaute, war ich froh und dankbar.',
+    title: 'OmaBank',
+    pages: [
+      'Die Bank, ich liebe diese Bank, ich kann soweit schauen. Die Luft ist voller Sommerfrische und Gedanken. Sie schaute da immer eine Weile und sagte kein Wort wenn sich mal Opa oder Oma da zur Ihr gesellte. Sie sagte, diese majestätische Weite die dort zu sehen ist, schau nur, da, der Baum, der wehte in den Baumkronen ganz lau, der Traktor da drüben schau, der macht Linien die sehen aus wie Karos und den Blüten in Blau, schau der Kirchturm, der spiegelt die Sonne als wäre er ein Stern in dem und der Wonne, schau, da drüben der Einkaufspark in dem Flügel, schau, schau, sagte sie wenn überhaupt etwas, blickend in die wunderschöne Sicht mit dem Himmelsblau.',
+      'Oma schaut sie immer an als würde sie gerade Geburtstag haben, aber Omi, kannst du bitte nochmal den Kuchen machen, mit Äpfeln der Glasur und bitte Kakao für mich, kannst du das machen und ich möchte dir helfen, sagte sie eines Nachmittags in der Küche zur Oma. Oma lächelte',
+    ],
   },
   {
-    number: '03',
-    text: 'Vorne Wald, hinten rot. So wunderschön hat das begonnen.',
+    title: 'das Rad direkt am Fenster',
+    pages: [
+      '...das Rad direkt am Fenster drehend ist. Dabei schaut sie immer aus dem Fenster und denkt sich, wie einer der Projektoren vom Dad. Er schaute da immer drauf um seine Touren auf den Wanderpfaden nochmal zu sehen. Dabei saß er manchmal mit seinen Freuenden zusammen, tranken Bier und erzählten sich die letzte Tour an irgendeinen Berg, Taal, Wald und oder Wiese. Sie wanderten lange immer, manchmal sogar mit Zeltübernachtung. Daher das Einmannzelt, was Sie immer zum Zelten nimmt. Sie war manchmal dabei um sich die Panoramabilder der Umgebung anzusehen. Sie schaut aus dem Fenster...',
+    ],
   },
 ]
+
+const pages: Page[] = groups.flatMap((group) =>
+  group.pages.map((text, i) => ({
+    heading: i === 0 ? group.title : null,
+    text,
+  }))
+)
 
 export default function ReadingPreviewSection() {
   const [pageIndex, setPageIndex] = useState(0)
   const page = pages[pageIndex]
   const isLastPage = pageIndex === pages.length - 1
+  const isFirstOfGroup = page.heading !== null
 
   return (
     <section id="reading-preview" className={styles.section}>
@@ -31,11 +51,18 @@ export default function ReadingPreviewSection() {
         <SectionHeading
           overline="Leseprobe"
           title="Ein paar Seiten zum Innehalten"
-          description={"Ein offizieller Auszug aus\nDie Kleine und das Universum.\n\nNimm dir einen Moment Zeit.\nVielleicht beginnt eine Geschichte,\ndie dich noch ein Stück begleitet."}
+          description={"Ausschnitte aus\nDie Kleine und das Universum.\n\nNimm dir einen Moment Zeit.\nVielleicht beginnt eine Geschichte,\ndie dich noch ein Stück begleitet."}
         />
         <div className={styles.book}>
           <article className={styles.page} aria-live="polite">
-            <span className={styles.pageNumber}>{page.number}</span>
+            {isFirstOfGroup ? (
+              <>
+                <span className={styles.pageLabel}>Ausschnitt aus dem Buch</span>
+                <h3 className={styles.pageTitle}>{page.heading}</h3>
+              </>
+            ) : (
+              <span className={styles.pageLabel}>&nbsp;</span>
+            )}
             <p>{page.text}</p>
           </article>
           <div className={styles.navigation} aria-label="Leseprobe navigieren">
