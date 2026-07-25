@@ -12,9 +12,6 @@ import ContactSection from './components/sections/Contact/ContactSection'
 export default function App() {
   return (
     <>
-      <a href="#main-content" className="skipLink">
-        Zum Inhalt springen
-      </a>
       <Navbar />
 
       <main id="main-content">
