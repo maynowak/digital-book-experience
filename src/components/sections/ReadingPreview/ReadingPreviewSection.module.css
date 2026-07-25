@@ -98,7 +98,6 @@
 
 .page p {
   margin: 0;
-  max-width: 30ch;
   color: #1d1814;
   font-family: var(--heading);
   font-size: clamp(1.1rem, 2.1vw, 1.45rem);
