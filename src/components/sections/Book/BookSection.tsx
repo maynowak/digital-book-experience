@@ -13,12 +13,16 @@ export default function BookSection() {
         <div className={styles.grid}>
           <div className={styles.coverFrame}>
             <div className={styles.coverSurface}>
-              <Image
-                src={bookCover}
-                alt="Buchcover: Die Kleine und das Universum von Maymilly Nowak"
-                className={styles.cover}
-                style={{ height: '100%' }}
-              />
+              <div className={styles.coverPrint}>
+                <div className={styles.coverHolder}>
+                  <Image
+                    src={bookCover}
+                    alt="Buchcover: Die Kleine und das Universum von Maymilly Nowak"
+                    className={styles.cover}
+                    style={{ height: '100%' }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles.details}>
