@@ -1,93 +1,49 @@
-# Hover-Reflex Analyse – Vertikaler Balken links am Buch
+# Atmosphäre-Parameter – Open Book SVG
 
-## Kandidaten im BookSection
+## Ziel
 
-### 1. `.section::before` — Wärmeglow
-```css
-top: -30%; left: -15%;
-width: 70%; height: 160%;
-background: radial-gradient(ellipse at center, rgba(255,225,190,0.05), transparent 70%);
+Das geöffnete Buch-SVG soll als poetische, subtile Hintergrundstimmung wahrnehmbar sein – wie eine Erinnerung, kein zweites Bild. Der Blick fällt immer zuerst auf das Cover. Das Motiv soll erkennbar sein, aber niemals mit dem Cover konkurrieren.
+
+## Finale Parameter
+
+| Parameter | Wert | Begründung |
+|---|---|---|
+| `left` | `-30%` | Element beginnt 30 % der Buchbreite links vom Buch. Das SVG (600 px breit) beginnt dort und erstreckt sich bis 480 px – abgedeckt wird die linke Buchhälfte plus der Bereich links daneben. |
+| `width` | `150%` | Das Element endet 20 % rechts vom Buch – genug Platz für den rechten Buchflügel des SVG. |
+| `height` | `180%` | Überragt das Buch oben und unten um je 40 % – kein harter Abschluss. |
+| `top` / `translateY` | `50%` / `-50%` | Vertikal zentriert zum Buch. |
+| `background` | SVG `left center / contain` + Radial-Gradient | **SVG linksbündig**: Das offene Buch beginnt am linken Rand des Elements (–120 px). Der **warme Radial-Gradient** (rgb(255,225,190) → transparent) liegt als zweite Ebene darunter und erzeugt eine dezente Temperatur. Das Zentrum des Gradienten liegt bei 60 px (Buchkoordinate) – deckungsgleich mit der Maske. |
+| `opacity` | `0.04` | Sehr niedrig, aber ausreichend, um die Buchform bei bewusstem Hinsehen zu erkennen. |
+| `filter` | `blur(4px)` | moderate Unschärfe – die Buchkonturen bleiben als weiche Silhouette erkennbar, ohne harte Kanten. |
+| `mask-image` | `radial-gradient(ellipse at 30% 50%, black 14%, transparent 45%)` | **Sichtbarer Bereich**: Voll sichtbar ab 14 % Radius (96 px) um das Zentrum bei 60 px → von –36 px bis 156 px in Buchkoordinaten. Das zeigt die Bindung und beide Buchflügelansätze. Die Ausblendzone (14–45 %) erstreckt sich von –248 px bis 368 px – sanfter Übergang, kein harter Cut. |
+
+## Geometrie (bei 400 px × 600 px Buch)
+
 ```
-- **Position**: Absolut zur Section, links oben (Zentrum bei ~20% Breite, 50% Höhe)
-- **Form**: Radial, kein Balken – weite, flächige warme Patina
-- **Unabhängig**: ✔ bewegt sich nicht mit dem Buch, folgt keiner Perspektive
-- **Wirkung**: Sehr subtiler warmer Schimmer auf der linken Section-Hälfte
-
----
-
-### 2. `.coverFrame::before` — Offenes Buch-SVG
-```css
-left: -40%; width: 200%; height: 200%; top: 50%; transform: translateY(-50%);
-background: url('openclipart-vectors-book-147566.svg') no-repeat left center / contain;
-opacity: 0.1; filter: blur(3px) brightness(1.15);
-mask-image: radial-gradient(ellipse at 35% 50%, black 25%, transparent 70%);
-z-index: -1;
+Element:             left=-120 px  width=600 px  →  -120 … 480
+                      top=-240 px  height=1080 px →  -240 … 840
+SVG (contain):       600 × 932 px, positioniert left center
+                      horizontal:  -120 … 480
+                      vertikal:    -204 … 728  (74 px padding oben/unten)
+Mask center:         30 % von 600 px = 180 px vom Elementrand → 60 px vom Buch
+SVG-Inhalt (ca.):    linke Seite -120 … –50, Bindung –50 … 0, rechte Seite 0 … 300
+Farthest corner:     (480, 840) → Radius = 684 px
+Inner circle (14 %): 96 px um (60, 300) → voll sichtbar von  –36 px … 156 px
+  → zeigt: Bindung + 36 px linke Seite + 156 px rechte Seite
+Outer circle (45 %): 308 px um (60, 300) → Ausblendung von –248 px … 368 px
+  → linke Seite blendet von 0 px bis –248 px ein
+  → rechte Seite blendet von 156 px bis 368 px aus
+  → gesamte Buchfläche ist abgedeckt, aber Ränder sind weich
 ```
-- **SVG-Inhalt**: Offenes Buch (weiße Buchseiten, schwarze Kontur, viewBox="0 0 112.07 173.99")
-- **Blur + Opacity**: 3 px Weichzeichnung bei 0.1 Deckkraft → sehr weiche, helle Silhouette
-- **Mask**: Sichtbar nur in einem elliptischen Ring um 35% / 50% der Elementfläche
-- **Unabhängig**: ✔ hinter dem Buch (z-index: -1), keine Perspektive
-- **Wirkung**: Blasse, unscharfe Buchform auf der linken Seite – keine vertikale Linie
 
----
+## Warum der Lichtbalken verschwindet und die Buchform erkennbar bleibt
 
-### 3. `.coverFrame::after` — Wärmeglow um das Buch
-```css
-inset: -20%;
-background: radial-gradient(ellipse at center, rgba(255,220,180,0.06), transparent 60%);
-```
-- **Form**: Radialer Glow, zentriert um coverFrame
-- **Wirkung**: Sehr dezente warme Hülle um das Buch herum
+1. **Kein Zentrieren**: Das SVG liegt links vom Buch (beginnt bei –120 px). Die hellen Buchseiten überlappen das Cover maximal im Bereich 0–156 px (rechter Buchflügel, 39 % der Coverbreite) – und das bei nur 4 % Deckkraft.
+2. **Die Maske folgt der Buchform**: Das sichtbare Zentrum (14 % Radius) liegt genau auf der Bindung des offenen Buchs. Beide Buchflügel werden symmetrisch eingeblendet – die weißen Seitenflächen erscheinen als weiche, flächige Helligkeit, nicht als harter Streifen.
+3. **Blur (4 px) erhält die Form**: Im Gegensatz zu 8 px sind bei 4 px die Buchkonturen (aus den schwarzen SVG-Strokelines) als weiche Silhouette erkennbar – der Betrachter identifiziert das Motiv, ohne dass Details stören.
+4. **Die warme Tönung verstärkt die Atmosphäre**: Der Radial-Gradient im Hintergrund (deckungsgleich mit der Maske) färbt die sichtbare Fläche in einen hauchzarten Warmton – unterbewusst poetisch, nicht technisch.
+5. **Stufenlose Transparenz**: Die 31-prozentige Ausblendzone (14→45 %) erstreckt sich über 212 px – kein scharfer Cut, kein sichtbarer Maskenrand.
 
----
+## Ergebnis
 
-### 4. `.coverSurface::before` (Ruhezustand) — Hardcover-Rahmen
-```css
-top: -10px; left: -10px; width: calc(100% + 20px);
-background:
-  radial-gradient(ellipse 200% 200% at 0% 0%, rgba(255,255,255,0.09) 0%, …)
-  linear-gradient(135°, …)
-  #1e2533;
-mask-composite: exclude → sichtbar ist nur der 10 px‑Ring
-```
-- **Radialer Gradient** at 0% 0% (obere linke Ecke):
-  - 0% = weiß (0.09)
-  - 14% = weiß (0.03)
-  - 32% = transparent
-  - 46% = schwarz (0.02)
-  - …
-- **Am linken Ring** (x=0..10 px, y=0..600 px):
-  - Entfernung vom Gradient-Zentrum: horizontal 0–10 px, vertikal 0–600 px
-  - Bei y=0 (oben): nahe Zentrum → hell (0.09)
-  - Bei y=300 px (Mitte): ~25 % Radius → zwischen 0.03 und transparent
-  - Bei y=600 px (unten): ~50 % Radius → neutral bis minimal dunkler
-- **Wirkung**: Vertikaler Helligkeitsverlauf auf dem linken Rahmen – oben hell, mitte neutral, unten minimal dunkler → **dies könnte der „vertikale Balken“ sein**, da der 10 px‑Ring links neben dem Cover sichtbar ist und über die gesamte Buchhöhe verläuft
-- **Buchabhängig**: ✔ Ist Teil des Hardcover-Rahmens, folgt der Buch-Perspektive
-
----
-
-### 5. `.coverPrint` — Inset-Shadows auf dem Cover
-```css
-box-shadow:
-  inset 0 0 1px 1px rgba(0,0,0,0.10),
-  inset 1px 1px 0.5px 0 rgba(255,255,255,0.05),
-  inset -1px -1px 1px 0 rgba(0,0,0,0.05);
-```
-- **Inset 1px 1px 0.5px**: Winziger 0.5 px breiter Highlight-Punkt oben links im Cover
-- **Wirkung**: Subpixel-Feinschliff, kein sichtbarer Balken
-
----
-
-## Bewertung
-
-| Kandidat | Vertikal | Höhe | Unabhängig vom Buch | Sichtbar |
-|---|---|---|---|---|
-| #1 `.section::before` | Radial, kein Balken | 160% Section | ✔ | Sehr weich |
-| #2 `.coverFrame::before` | Buch-Silhouette, kein Balken | 200% | ✔ | Hinter dem Buch |
-| #3 `.coverFrame::after` | Radial, kein Balken | -20%/+20% | ~ | kaum |
-| **#4 `.coverSurface::before`** | **✔ linke Rahmenseite** | **volle Buchhöhe** | **– (ist der Rahmen)** | **oben hell → mitte neutral** |
-| #5 `.coverPrint` | 0.5px, kein Balken | — | — | kaum |
-
-**Verdächtigster Kandidat**: #4 – der `radial-gradient(at 0% 0%)` auf `coverSurface::before` erzeugt einen vertikalen Helligkeitsverlauf auf der linken 10 px-Rahmenkante. Dieser IST Teil des Hardcovers, liegt aber optisch „links neben“ dem Cover-Bild.
-
-Falls der Eindruck entsteht, dass dieser Verlauf **außerhalb der Hardcover-Kante** liegt: das liegt daran, dass der Rahmen 10 px über `coverSurface` hinausragt (`top: -10px; left: -10px`). Der linke Rahmenstreifen ist also tatsächlich 10 px breit und verläuft über die gesamte Buchhöhe – mit einer Helligkeitsspitze am oberen Ende.
+Das geöffnete Buch erscheint als weiche, warme Lichtsilhouette **links neben dem Buch** mit sanftem Übergang auf die vordere Coverhälfte. Der Betrachter sieht zuerst das Hardcover. Erst beim genaueren Hinsehen wird die poetische Buch-Silhouette im Hintergrund bewusst wahrgenommen – als unterbewusste Erinnerung, nicht als zweites Bild.
