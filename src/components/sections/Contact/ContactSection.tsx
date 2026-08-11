@@ -13,7 +13,7 @@ export default function ContactSection() {
           title="Lass uns ins Gespräch kommen"
           description="Ich freue mich auf deine Nachricht."
         />
-        <form className={styles.form}>
+        <form action="https://tally.so/r/7R02E9" method="POST" className={styles.form}>
           <label htmlFor="contact-name" className="visuallyHidden">
             Name
           </label>
