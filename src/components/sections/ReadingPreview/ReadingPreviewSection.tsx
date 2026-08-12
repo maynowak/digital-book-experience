@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Container from '../../layout/Container/Container'
 import SectionHeading from '../../ui/SectionHeading/SectionHeading'
 import Button from '../../ui/Button/Button'
+import Image from '../../ui/Image/Image'
+import introImage from '../../../assets/book/ChatGPTImage10Aug202616_34_41.png'
 import styles from './ReadingPreviewSection.module.css'
 
 type Page = {
@@ -51,8 +53,34 @@ export default function ReadingPreviewSection() {
         <SectionHeading
           overline="Leseprobe"
           title="Ein paar Seiten zum Innehalten"
-          description={"Ausschnitte aus\nDie Kleine und das Universum.\n\nNimm dir einen Moment Zeit.\nVielleicht beginnt eine Geschichte,\ndie dich noch ein Stück begleitet."}
         />
+        <div className={styles.intro}>
+          <Image
+            src={introImage}
+            alt="Ein Kind sitzt vor einem leuchtenden geöffneten Buch im Angesicht eines kosmischen Universums, daneben das Buchcover von „Die Kleine und das Universum“"
+            className={styles.introImage}
+          />
+          <div className={styles.introOverlay}>
+            <span className={styles.introDivider} aria-hidden="true">
+              <span className={styles.introLine} />
+              <span className={styles.introStar}>✦</span>
+              <span className={styles.introLine} />
+            </span>
+            <p className={styles.introDescription}>
+              {`Ausschnitte aus
+Die Kleine und das Universum.
+
+Nimm dir einen Moment Zeit.
+Vielleicht beginnt eine Geschichte,
+die dich noch ein Stück begleitet.`}
+            </p>
+            <span className={styles.introDivider} aria-hidden="true">
+              <span className={styles.introLine} />
+              <span className={styles.introStar}>✦</span>
+              <span className={styles.introLine} />
+            </span>
+          </div>
+        </div>
         <div className={styles.book}>
           <article className={styles.page} aria-live="polite">
             {isFirstOfGroup ? (
