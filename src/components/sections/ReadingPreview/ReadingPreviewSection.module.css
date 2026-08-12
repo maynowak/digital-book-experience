@@ -44,7 +44,7 @@
 .introOverlay {
   position: absolute;
   left: 56%;
-  top: 38%;
+  top: calc(25% + 30px);
   transform: translate(-50%, -50%);
   width: min(62%, 30rem);
   display: grid;
