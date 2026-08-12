@@ -31,18 +31,18 @@
 .coverFrame::before {
   content: '';
   position: absolute;
-  left: -30%;
-  width: 150%;
+  left: -20%;
+  width: 130%;
   height: 180%;
   top: 50%;
   transform: translateY(-50%);
   background:
-    url('../../../assets/book/openclipart-vectors-book-147566.svg') no-repeat left center / contain,
+    url('../../../assets/book/book-silhouette.svg') no-repeat center / contain,
     radial-gradient(ellipse at center, rgb(255, 225, 190), transparent 50%);
-  opacity: 0.04;
-  filter: blur(4px);
-  -webkit-mask-image: radial-gradient(ellipse at 30% 50%, black 14%, transparent 45%);
-  mask-image: radial-gradient(ellipse at 30% 50%, black 14%, transparent 45%);
+  opacity: 0.09;
+  filter: blur(0.5px);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 48%);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 48%);
   pointer-events: none;
 }
 

@@ -1,99 +1,106 @@
 # AI Development Team
 
-This document defines the roles and responsibilities of the human and AI collaborators working on the **Digital Book Experience** project.
+This document records the AI-assisted collaboration used for the **Digital Book Experience** project.
 
 ## Human
 
 ### Maymilly Nowak
 
 **Role**
-
 - Product Owner
-- Vision
-- Testing
-- QA
-- Release Decisions
 - Creative Direction
+- Project Vision
+- Technical Decisions
+- Browser Testing / QA
+- Git Workflow
+- Release Decisions
 
 ---
 
-## OpenAI ChatGPT (GPT-5.5)
+## ChatGPT — GPT-5.6 Luna
 
 **Role**
-
 - Software Architecture
-- Sprint Planning
+- Project Planning
 - UX Review
 - Documentation Strategy
-- Code Reviews
+- Code Review
 - Debugging Support
-- Project Management
+- Prompt Engineering
+- Technical Reasoning
+- Project Coordination
 
-**Responsibilities**
-
-- Architecture decisions
-- Design reviews
-- Documentation structure
-- Roadmap planning
-- Sprint definitions
-- Accessibility guidance
-- Browser debugging
-- Release preparation
+ChatGPT is used primarily for analysis, planning, review and structured collaboration.
 
 ---
 
-## OpenAI Codex (GitHub Copilot Agent)
-
-> ⚠️ **Status (as of 2026-07-15): Temporarily inactive** — Codex has reached its usage limit ahead of the paid upgrade. Implementation responsibilities are being covered by Claude Sonnet 5 in the meantime. This section will be reactivated once Codex is available again.
+## OpenAI Codex / GitHub Copilot Agent
 
 **Role**
-
 - Software Implementation
-
-**Responsibilities**
-
-- Feature implementation
 - Refactoring
-- Git workflow
-- Build validation
-- Documentation updates
-- Sprint implementation
-- Asset integration
+- Build Validation
+- Git Workflow Support
+
+**Typical responsibilities**
+- feature implementation
+- refactoring
+- documentation updates
+- build checks
+- repository changes
+- technical implementation
 
 ---
 
 ## Claude Sonnet 5
 
-> ℹ️ **Status (as of 2026-07-15): Temporarily also covering Codex's Software Implementation role** while Codex is inactive due to its usage limit.
-
 **Role**
-
 - Documentation Auditor
 - Architecture Reviewer
 - Media Planning
-- _(Temporary)_ Software Implementation
+- Temporary Software Implementation
 
-**Responsibilities**
-
-- Documentation consistency
-- Cross-file reviews
-- Media Integration Planning
-- Accessibility recommendations
-- Asset inventory
-- Optimization recommendations
-- Documentation vs implementation analysis
-- _(Temporary, covering Codex)_ Feature implementation, refactoring, Git workflow, build validation, sprint implementation, asset integration
+Claude was also used for cross-file consistency checks and implementation support.
 
 ---
 
-## Development Workflow
+## DeepSeek V4 Flash Free
 
-```mermaid
-flowchart TD
-    A[May] --> B[ChatGPT]
-    B --> C[Codex]
-    C --> D[Claude Review]
-    D --> E[May QA]
-    E --> F[Git]
-    F --> G[Release]
+**Role**
+- Technical CSS analysis
+- Browser rendering investigation
+- Visual-effect analysis
+- Reels/video rendering debugging
+- Iterative visual refinement
+
+DeepSeek was particularly useful for detailed analysis of stacking contexts, pseudo-elements, `object-fit`, `mask-composite`, `box-shadow`, transitions, z-index and browser rendering behavior.
+
+---
+
+## GitHub Copilot
+
+**Role**
+- Codebase inspection
+- CSS/TypeScript assistance
+- Implementation support
+- Repository navigation
+
+---
+
+## AI Collaboration Workflow
+
+```text
+Maymilly Nowak
+      ↓
+ChatGPT — architecture / analysis / planning
+      ↓
+Codex / Copilot — implementation
+      ↓
+Claude / DeepSeek — review and technical investigation
+      ↓
+Maymilly Nowak — browser QA and final decision
+      ↓
+Git checkpoint
 ```
+
+The human developer remains the final decision maker. AI suggestions are tested against the actual browser result before being accepted.

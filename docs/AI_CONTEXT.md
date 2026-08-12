@@ -1,195 +1,70 @@
-# AI Models
-
-## GPT (ChatGPT)
-
-Role
-
-Chief Architect
-
-Responsibilities
-
-- Architecture
-- Reviews
-- Planning
-- Product decisions
-
----
-
-## GPT-5.6 Terra
-
-Role
-
-Implementation Engineer
-
-Responsibilities
-
-- Daily coding
-- React
-- CSS
-- Refactoring
-- Bug fixing
-
----
-
-## Claude Sonnet 5
-
-Role
-
-Senior Engineer
-
-Responsibilities
-
-- Sprint implementation
-- Accessibility
-- Performance
-- Documentation sync
-- Final engineering review
-
----
-
-Workflow
-
-Read AI_START.md first.
-
 # AI Project Context
 
-Project
+## Project
 
-Digital Book Experience
+**Digital Book Experience**
 
-Purpose
+A calm, poetic digital experience based on the published book **„Die Kleine und das Universum“** by Maymilly Nowak.
 
-This is NOT an e-commerce website.
+## Current Project Status
 
-This is NOT a product landing page.
+- Foundation: completed
+- Design System: completed
+- Storytelling: completed
+- React/Vite application: buildable
+- Git/GitHub workflow: established
+- Responsive design and visual polish: implemented
+- Book section: real published cover integrated
+- Book cover architecture: `coverSurface → coverPrint → coverHolder → img.cover`
+- Current work: visual refinement of the book presentation and hover interaction
+- Deployment target: Vercel
+- Repository: `https://github.com/maynowak/digital-book-experience`
 
-It is a poetic digital experience based on the published book
+## AI-Assisted Development
 
-"Die Kleine und das Universum" writer "Maymilly Nowak".
+AI was used as an active development partner, not only for text generation.
 
-Goals
+### Documented AI collaborators
 
-- calm
-- emotional
-- premium
-- minimalistic
+- **ChatGPT (GPT-5.6 Luna)** — architecture, planning, UX review, documentation, debugging, technical reasoning, prompt engineering and project coordination.
+- **OpenAI Codex / GitHub Copilot Agent** — implementation, refactoring, build validation and Git workflow support.
+- **Claude Sonnet 5** — documentation auditing, architecture review, media planning and temporary implementation support when Codex was unavailable.
+- **DeepSeek V4 Flash Free** — detailed CSS/rendering analysis, browser-debugging hypotheses, Reels rendering investigations and iterative visual refinement.
+- **GitHub Copilot** — codebase inspection and implementation assistance.
 
-Progress
+The project documentation was used as a shared context so that AI-assisted changes remained aligned with the project architecture and visual goals.
 
-- Sprint 1.3 completed: motion, storytelling polish, navigation refinement, Firefox compatibility, and visual polish.
-- Current maturity: buildable, polished, premium reading experience with accessible motion and design tokens.
-- Next phase: Sprint 2.0 — Media Integration.
+## AI Working Agreement
 
-Visual Style
+Every AI assistant working on this repository should:
 
-- nature
-- sky
-- forest
-- stars
-- soft light
-- generous whitespace
+1. Read `AI_CONTEXT.md` first.
+2. Read `DESIGN_SYSTEM.md`.
+3. Read `ARCHITECTURE.md`.
+4. Read `STORYBOARD.md`.
+5. Understand the project vision before proposing implementation changes.
+6. Distinguish observations from hypotheses.
+7. Make small, reversible changes.
+8. Preserve the existing architecture unless a structural change is explicitly justified.
+9. Run `npm run build` after implementation changes.
+10. Summarize modified files and the reason for each change.
 
-Hero
+## Collaboration Model
 
-Use a fullscreen background image inspired by the referenced Instagram post.
+**Human Developer — Maymilly Nowak**
+- Product Owner
+- final technical and creative decisions
+- testing and browser validation
+- Git checkpoints and release decisions
 
-Book Section
+**AI collaborators**
+- support analysis, implementation, review, documentation and technical exploration
+- do not replace human QA or final decision-making
 
-Use the real published book cover.
+## Important Development Principle
 
-Author
+The project uses AI collaboratively and iteratively:
 
-Use the author's profile image from instagram profile or a calm portrait.
+**Human observation → AI analysis → small technical change → build → browser test → human evaluation → Git checkpoint**
 
-Reels
-
-Prepare the components for future Instagram embeds. Instagram search "maymillynowak".
-
-Do not create placeholder artwork.
-
-If assets are missing, preserve the component and leave a TODO.
-
-Architecture
-
-# Development Rules
-
-Always:
-
-- Keep the project buildable.
-- Run npm run build after modifications.
-- Never rename folders without necessity.
-- Preserve the existing architecture.
-- Prefer reusable components.
-- Use design tokens.
-- Keep accessibility in mind.
-- Preserve the calm and poetic atmosphere.
-- Do not introduce placeholder artwork.
-- Summarize all modified files after every sprint.
-
-# AI Working Agreement
-
-Every AI assistant working on this repository must:
-
-1. Read AI_CONTEXT.md first.
-2. Read DESIGN_SYSTEM.md.
-3. Read ARCHITECTURE.md.
-4. Read STORYBOARD.md.
-5. Never implement features without understanding the project vision.
-6. Explain uncertainties before modifying the project.
-
-## Collaboration
-
-This project is developed collaboratively.
-
-Roles:
-
-- Human Developer (May): Product Owner and final decision maker.
-- ChatGPT: Architecture, planning, UX, reviews and technical guidance.
-- Codex: Implementation and refactoring.
-
-All contributors should preserve the project vision, architecture and documentation.
-
-# Current Project Phase
-
-Experience Polish
-
-Engineering Mode
-
-Fast Implementation Mode
-
-Project Architecture
-
-// Frozen
-
-Design System
-
-Frozen
-
-Documentation
-
-Stable
-
-Default implementation philosophy
-
-Small task
-
-↓
-
-Small implementation
-
-↓
-
-One build
-
-↓
-
-One commit
-
-↓
-
-Stop
-
-// kostquestions noticed
-Do not perform internet research unless explicitly requested if this is a big cost, ask about it.
-
-Assume all required resources are provided by the Product Owner or documented in PROJECT_RESOURCES.md.
+This workflow is especially important for visual effects, where a technically valid CSS change can still produce an undesirable visual result.
